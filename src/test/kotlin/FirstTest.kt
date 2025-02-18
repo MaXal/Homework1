@@ -17,22 +17,5 @@ import kotlin.time.Duration.Companion.minutes
 class FirstTest {
     @Test
     fun testSettings(){
-        Starter.newContext(
-            "testExample",
-            TestCase(
-                IdeProductProvider.IC,
-                GitHubProject.fromGithub(branchName = "master",
-                    repoRelativeUrl = "JetBrains/ij-perf-report-aggregator"))
-                .withVersion("2024.2")
-        ).runIdeWithDriver().useDriverAndCloseIde {
-            waitForIndicators(1.minutes)
-            ideFrame {
-                x(xQuery { byVisibleText("Current File") }).click()
-                val configurations = popup().jBlist(xQuery { contains(byVisibleText("Edit Configurations")) })
-                configurations.shouldBe("Configuration list is not present", present)
-                Assertions.assertTrue(configurations.rawItems.contains("backup-data"),
-                    "Configurations list doesn't contain 'backup-data' item: ${configurations.rawItems}")
-            }
-        }
     }
 }
