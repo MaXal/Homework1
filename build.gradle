@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+buildscript {
+    ext.kotlin_version = '2.0.20'
+
+    repositories {
+        maven { url = "https://cache-redirector.jetbrains.com/maven-central" }
+        maven { url = "https://cache-redirector.jetbrains.com/intellij-dependencies" }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    maven { url = "https://cache-redirector.jetbrains.com/maven-central" }
+    maven { url = "https://cache-redirector.jetbrains.com/intellij-dependencies" }
+    maven { url = "https://cache-redirector.jetbrains.com/download.jetbrains.com/teamcity-repository" }
+
+    maven { url = "https://www.jetbrains.com/intellij-repository/releases" }
+    maven { url = "https://www.jetbrains.com/intellij-repository/snapshots" }
+
+}
+
+dependencies {
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-squashed:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-junit5:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-driver:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.driver:driver-client:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.driver:driver-sdk:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.driver:driver-model:LATEST-EAP-SNAPSHOT'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+configurations {
+    implementation.exclude(group: 'com.jetbrains.intellij.remoteDev')
+}
+
+tasks.test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
