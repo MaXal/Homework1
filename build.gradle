@@ -25,12 +25,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'com.jetbrains.intellij.tools:ide-starter-squashed:LATEST-EAP-SNAPSHOT'
-    testImplementation 'com.jetbrains.intellij.tools:ide-starter-junit5:LATEST-EAP-SNAPSHOT'
-    testImplementation 'com.jetbrains.intellij.tools:ide-starter-driver:LATEST-EAP-SNAPSHOT'
-    testImplementation 'com.jetbrains.intellij.driver:driver-client:LATEST-EAP-SNAPSHOT'
-    testImplementation 'com.jetbrains.intellij.driver:driver-sdk:LATEST-EAP-SNAPSHOT'
-    testImplementation 'com.jetbrains.intellij.driver:driver-model:LATEST-EAP-SNAPSHOT'
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-squashed:243.24978.46'
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-junit5:243.24978.46'
+    testImplementation 'com.jetbrains.intellij.tools:ide-starter-driver:243.24978.46'
+    testImplementation 'com.jetbrains.intellij.driver:driver-client:243.24978.46'
+    testImplementation 'com.jetbrains.intellij.driver:driver-sdk:243.24978.46'
+    testImplementation 'com.jetbrains.intellij.driver:driver-model:243.24978.46'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 }
